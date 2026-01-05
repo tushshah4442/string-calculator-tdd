@@ -2,8 +2,8 @@ import 'package:string_calculator/string_calculator.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('supports newline as delimiter along with comma', () {
-    final result = add('1\n2,3');
-    expect(result, 6);
+  test('supports custom delimiter', () {
+    final result = add('//;\n1;2');
+    expect(result, 3);
   });
 }
