@@ -2,15 +2,8 @@ import 'package:string_calculator/string_calculator.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('A group of tests', () {
-    final awesome = Awesome();
-
-    setUp(() {
-      // Additional setup goes here.
-    });
-
-    test('First Test', () {
-      expect(awesome.isAwesome, isTrue);
-    });
+  test('returns 0 for empty string', () {
+    final result = add('');
+    expect(result, 0);
   });
 }
