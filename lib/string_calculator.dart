@@ -8,17 +8,24 @@ int add(String numbers) {
   String delimiter = ',';
   String numbersPart = numbers;
 
-  // Check for custom delimiter definition
   if (numbers.startsWith('//')) {
     final parts = numbers.split('\n');
-    delimiter = parts[0].substring(2); // Extract delimiter after //
+    delimiter = parts[0].substring(2);
     numbersPart = parts[1];
   }
 
-  // Normalize newlines to delimiter
   final normalized = numbersPart.replaceAll('\n', delimiter);
-
-  // Split and sum
   final tokens = normalized.split(delimiter);
-  return tokens.map(int.parse).reduce((a, b) => a + b);
+
+  final values = tokens.map(int.parse).toList();
+
+  // Check for negative numbers
+  final negatives = values.where((n) => n < 0).toList();
+  if (negatives.isNotEmpty) {
+    throw Exception(
+      'negative numbers not allowed ${negatives.join(',')}',
+    );
+  }
+
+  return values.reduce((a, b) => a + b);
 }
