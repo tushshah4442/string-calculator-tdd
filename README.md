@@ -1,39 +1,21 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# String Calculator – TDD Kata (Dart)
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
+This repository contains a Dart implementation of the String Calculator kata,
+developed using Test-Driven Development (TDD) as part of the Incubyte
+Software Craftsperson assessment.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
+## Approach
+- Followed strict TDD cycles: Red → Green → Refactor
+- Added one failing test at a time
+- Refactored only after tests passed
+- Made small, meaningful commits to show code evolution
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## Supported Features
+- Empty string returns 0
+- Single and multiple numbers
+- Newline and custom delimiters
+- Throws exception for negative numbers (lists all negatives)
 
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+## Running Tests
+```bash
+dart test
