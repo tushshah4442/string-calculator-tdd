@@ -18,4 +18,9 @@ void main() {
     final calculator = StringCalculator();
     expect(calculator.add('1,5'), 6);
   });
+  //Newlines (\n) should behave like commas
+  test('numbers separated by newlines are also summed', () {
+    final calculator = StringCalculator();
+    expect(calculator.add('1\n2,3'), 6);
+  });
 }
