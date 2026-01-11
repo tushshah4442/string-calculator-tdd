@@ -18,16 +18,16 @@ class StringCalculator {
     if (!numbers.startsWith('//')) return ',';
 
     final header = numbers.split('\n').first;
+    return _parseDelimiter(header);
+  }
 
-    // multi-char delimiter: //[***]
+  String _parseDelimiter(String header) {
     if (header.contains('[')) {
       return header.substring(
         header.indexOf('[') + 1,
         header.indexOf(']'),
       );
     }
-
-    // single-char delimiter: //;
     return header.substring(2);
   }
 
