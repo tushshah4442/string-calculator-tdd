@@ -9,8 +9,7 @@ class StringCalculator {
 
     _validateNoNegatives(values);
 
-    // 🔥 NEW RULE (Test 7): Ignore numbers > 1000
-    final filtered = values.where((n) => n <= 1000);
+    final filtered = _filterIgnored(values);
 
     return filtered.reduce((a, b) => a + b);
   }
@@ -39,5 +38,10 @@ class StringCalculator {
     if (negatives.isNotEmpty) {
       throw Exception('negative numbers not allowed ${negatives.join(',')}');
     }
+  }
+
+  //NEW REFACTOR METHOD
+  List<int> _filterIgnored(List<int> values) {
+    return values.where((n) => n <= 1000).toList();
   }
 }
