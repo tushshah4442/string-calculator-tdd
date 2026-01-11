@@ -15,10 +15,20 @@ class StringCalculator {
   }
 
   String _extractDelimiter(String numbers) {
-    if (numbers.startsWith('//')) {
-      return numbers.split('\n').first.substring(2);
+    if (!numbers.startsWith('//')) return ',';
+
+    final header = numbers.split('\n').first;
+
+    // multi-char delimiter: //[***]
+    if (header.contains('[')) {
+      return header.substring(
+        header.indexOf('[') + 1,
+        header.indexOf(']'),
+      );
     }
-    return ',';
+
+    // single-char delimiter: //;
+    return header.substring(2);
   }
 
   String _extractNumbers(String numbers) {
