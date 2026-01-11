@@ -47,13 +47,18 @@ class StringCalculator {
   // --- Parsing ---
 
   List<int> _splitNumbers(String numbers, List<String> delimiters) {
-    String normalized = numbers.replaceAll('\n', ',');
+    final normalized = _normalizeDelimiters(numbers, delimiters);
+    return normalized.split(',').map(int.parse).toList();
+  }
 
-    for (final d in delimiters) {
-      normalized = normalized.replaceAll(d, ',');
+  String _normalizeDelimiters(String numbers, List<String> delimiters) {
+    var result = numbers.replaceAll('\n', ',');
+
+    for (final delimiter in delimiters) {
+      result = result.replaceAll(delimiter, ',');
     }
 
-    return normalized.split(',').map(int.parse).toList();
+    return result;
   }
 
   // --- Validation ---
