@@ -1,5 +1,5 @@
 class StringCalculator {
   int add(String numbers) {
-    throw UnimplementedError();
+    return 0;
   }
 }
