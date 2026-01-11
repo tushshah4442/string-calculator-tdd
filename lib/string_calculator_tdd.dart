@@ -2,29 +2,39 @@ class StringCalculator {
   int add(String numbers) {
     if (numbers.isEmpty) return 0;
 
-    String delimiter = ',';
-    String numbersPart = numbers;
+    final delimiter = _extractDelimiter(numbers);
+    final numbersPart = _extractNumbers(numbers);
 
-    // Handle custom delimiter
-    if (numbers.startsWith('//')) {
-      final parts = numbers.split('\n');
-      delimiter = parts[0].substring(2);
-      numbersPart = parts[1];
-    }
+    final values = _splitNumbers(numbersPart, delimiter);
 
-    final normalized = numbersPart.replaceAll('\n', delimiter);
-    final parts = normalized.split(delimiter);
-
-    final values = parts.map(int.parse).toList();
-
-    // NEW: Detect negative numbers
-    final negatives = values.where((n) => n < 0).toList();
-    if (negatives.isNotEmpty) {
-      throw Exception(
-        'negative numbers not allowed ${negatives.join(',')}',
-      );
-    }
+    _validateNoNegatives(values);
 
     return values.reduce((a, b) => a + b);
+  }
+
+  String _extractDelimiter(String numbers) {
+    if (numbers.startsWith('//')) {
+      return numbers.split('\n').first.substring(2);
+    }
+    return ',';
+  }
+
+  String _extractNumbers(String numbers) {
+    if (numbers.startsWith('//')) {
+      return numbers.split('\n')[1];
+    }
+    return numbers;
+  }
+
+  List<int> _splitNumbers(String numbers, String delimiter) {
+    final normalized = numbers.replaceAll('\n', delimiter);
+    return normalized.split(delimiter).map(int.parse).toList();
+  }
+
+  void _validateNoNegatives(List<int> values) {
+    final negatives = values.where((n) => n < 0).toList();
+    if (negatives.isNotEmpty) {
+      throw Exception('negative numbers not allowed ${negatives.join(',')}');
+    }
   }
 }
