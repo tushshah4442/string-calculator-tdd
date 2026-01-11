@@ -41,5 +41,10 @@ void main() {
       ),
     );
   });
+  //Ignore numbers > 1000
+  test('numbers greater than 1000 are ignored', () {
+    final calculator = StringCalculator();
+    expect(calculator.add('2,1001'), 2);
+  });
 
 }
