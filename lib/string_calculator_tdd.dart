@@ -9,7 +9,10 @@ class StringCalculator {
 
     _validateNoNegatives(values);
 
-    return values.reduce((a, b) => a + b);
+    // 🔥 NEW RULE (Test 7): Ignore numbers > 1000
+    final filtered = values.where((n) => n <= 1000);
+
+    return filtered.reduce((a, b) => a + b);
   }
 
   String _extractDelimiter(String numbers) {
